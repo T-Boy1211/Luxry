@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bently</title>
+</head>
+  <body>
+    <nav class="navbar navbar-expand bg-body-tertiary position-sticky top-0">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Bently</a>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" id="searchModel" placeholder="Search Model" aria-label="Search">
+          <button class="btn btn-outline-success" type="button" onclick="searchModel()">Search</button>
+        </form>
+      </div>
+    </nav>
+    <div id="modelsContainer"></div>
+    <script>
+      const bentleyModels = [
+        { name: "Bentay Bentayga", image: "Bentley-Bentayga.jpg", interior: "Bentley-Bentayga-Interior.jpeg"},
+        {name: "Continent GT", image: "Bentley-Continent-GT.jpeg", interior: "Bentley-Continent-GT-Interior.jpeg"},
+        {name: "Turbo R", image: "Bentley-Turbo-R.jpeg", interior: "Bentley-Turbo-R-Interior.jpeg"},
+      ];
+
+      // Generate models sections dynamically
+      const container = document.getElementById('modelsContainer');
+      
+      bentleyModels.forEach(model => {
+        const modelSection = document.createElement('div');
+        modelSection.id = model.name;
+        modelSection.innerHTML = `
+          <h3 class="text-center mt-5 fs-3">${model.name}</h3>
+          <div class="container-fluid d-flex">
+            <img src="Lamborghini/${model.image}" class="w-50" alt="${model.name} Image">
+            <img src="Lamborghini/${model.interior}" class="w-50" alt="${model.name} Interior">
+          </div>
+        `;
+        container.appendChild(modelSection);
+      });
+  
+      // Scroll to a specific model
+      function searchModel() {
+        const modelName = document.getElementById('searchModel').value;
+        const modelSection = document.getElementById(modelName);
+        if (modelSection) {
+          modelSection.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          alert("Model not found");
+        }
+      }
+    </script>
+  </body>  
+</html>
